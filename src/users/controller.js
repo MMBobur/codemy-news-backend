@@ -2,12 +2,12 @@ const db = require("../../models");
 const UserCont = db.users;
 
 exports.create = (req, res) => {
-  if (!req.body.login) {
-    res.status(400).send({
-      message: "Content can not be empty!",
-    });
-    return;
-  }
+  // if (!req.body.login) {
+  //   res.status(400).send({
+  //     message: "Content can not be empty!",
+  //   });
+  //   return;
+  // }
 
   const cate = {
     login: req.body.login,
