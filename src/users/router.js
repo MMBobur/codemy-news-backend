@@ -3,7 +3,7 @@ const router = express.Router();
 const validate = require('express-validation');
 
 const UserCont = require('./controller');
-const Validator = require('./validator')
+const Validator = require('./validator');
 
 router.get('/' , UserCont.findAll);
 router.get('/:id', UserCont.findById);

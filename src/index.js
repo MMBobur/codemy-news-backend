@@ -15,7 +15,7 @@ app.use("/", appRouter);
 
 app.listen(port, () => {
   console.log(
-    `${port} portni eshityapman... `
+    `${port} portni eshitmoqdaman... `
   );
 });
 
