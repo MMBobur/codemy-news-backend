@@ -1,4 +1,4 @@
-module.exports = (sequelize, Sequelize) => {
+module.exports = (sequelize, Sequelize) =>{
     const ModelCategories = sequelize.define(
       "category",
       {
@@ -18,7 +18,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       {
         tableName: "category",
-        timestamps: false
+        timestamps: true
       }
     );
     return ModelCategories;

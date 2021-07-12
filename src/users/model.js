@@ -1,4 +1,4 @@
-module.exports= (sequelize , Sequelize ) =>{
+module.exports= (sequelize , Sequelize ) => {
     const User = sequelize.define("users",{
         id:{
             type: Sequelize.INTEGER,
@@ -21,7 +21,7 @@ module.exports= (sequelize , Sequelize ) =>{
     },
     {
         tableName:"users",
-        timestamps:false
+        timestamps:true
     }
 
     );

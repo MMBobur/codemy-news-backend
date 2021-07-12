@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+
 const ValidateScheme = require('./validator');
 const validator = require('express-validation');
 const catesConttroller = require("./controller");

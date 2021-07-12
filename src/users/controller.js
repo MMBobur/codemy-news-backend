@@ -2,6 +2,7 @@ const db = require("../model/index");
 const UserCont = db.users;
 
 exports.create = (req, res) => {
+  
   if (!req.body.login) {
     res.status(400).send({
       message: "Content can not be empty!",

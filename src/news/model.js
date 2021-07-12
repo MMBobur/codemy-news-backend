@@ -1,4 +1,4 @@
-module.exports = (sequelize, Sequelize) => {
+module.exports = (sequelize, Sequelize) =>{
     const News = sequelize.define(
         "News", {
             id: {
@@ -33,7 +33,7 @@ module.exports = (sequelize, Sequelize) => {
             },
         }, {
             tableName: "News",
-            timestamps: false,
+            timestamps: true,
         }
     );
     return News;

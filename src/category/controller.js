@@ -1,4 +1,5 @@
 const db = require("../model/index");
+
 const CateCont = db.categories;
 
 exports.create = (req, res) => {
