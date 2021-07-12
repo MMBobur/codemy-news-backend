@@ -33,7 +33,7 @@ module.exports = (sequelize, Sequelize) =>{
             },
         }, {
             tableName: "News",
-            timestamps: true,
+            timestamps: false,
         }
     );
     return News;
