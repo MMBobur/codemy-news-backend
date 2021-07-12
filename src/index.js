@@ -1,17 +1,22 @@
-const express = require('express');
+const express = require("express");
+const appRouter = require("./router");
 const app = express();
-const db = require('../models/index');
-const router = require('./category/router')
+const db = require("./model/index");
 
-const port = process.env.PORT || 5000;
+db.sequelize.sync();
 
-app.use(express.urlencoded({extended:true}));
+const port = process.env.PORT || 3000
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use('/', router)
 
-db.sequelize.sync().
+app.use("/", appRouter);
 
-app.listen(port,()=>{
-    console.log(`${port} port eshitilyapti`);
-})
+app.listen(port, () => {
+  console.log(
+    `${port} portni eshityapman... `
+  );
+});
+
+module.exports = app;
