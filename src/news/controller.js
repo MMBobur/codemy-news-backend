@@ -17,13 +17,16 @@ exports.findAll = (req, res) => {
 exports.create = (req, res) => {
 
   const userw = {
+
     car_id: req.body.car_id,
     title: req.body.title,
     text: req.body.text,
     author: req.body.author,
     data: req.body.data,
-    image: req.body.image,
+    image: req.protocol + "://" + req.get("host") + "/image/" + req.file.filename,
   };
+
+  
 
   News
     .create(userw)
@@ -53,8 +56,21 @@ exports.findOne = (req, res) => {
 };
 
 exports.update = (req, res) => {
+  if (!req.file) {
+    res.status(500);
+    return res.json({ error: "katta error" });
+  }
+  const userw = {
+    car_id: req.body.car_id,
+    title: req.body.title,
+    text: req.body.text,
+    author: req.body.author,
+    data: req.body.data,
+    image: req.protocol + "://" + req.get("host") + "/image/" + req.file.filename,
+  };
+
   const id = req.params.id;
-  News.update(req.body, {
+  News.update(userw, {
       where: { id: id },
     })
     .then((num) => {
