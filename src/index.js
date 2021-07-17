@@ -6,7 +6,7 @@ const db = require("./model/index");
 const bodyParser = require('body-parser')
 
 
-db.sequelize.sync({force: true});
+db.sequelize.sync();
 
 const port = 5000
 
