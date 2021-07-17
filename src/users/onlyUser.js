@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const moment = require("moment");
 const db = require("../model/index");
-const UserCont = db.users;
+const UserCont = db.users
 
 module.exports = async function (req, res, next) {
   let token = req.headers["token"];
