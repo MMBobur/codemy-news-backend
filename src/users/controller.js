@@ -1,4 +1,5 @@
 const db = require("../model/index");
+const jwt = require("jsonwebtoken")
 const UserCont = db.users;
 
 exports.create = (req, res) => {
@@ -37,7 +38,7 @@ exports.findAll = (req, res) => {
 
 exports.findById = (req, res) => {
   const id = req.params.id;
-  UserCont.findById(id)
+  UserCont.findByPk(id)
     .then((data) => {
       res.send(data);
     })
@@ -53,7 +54,7 @@ exports.update = (req, res) => {
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: " Titorial was updated succesfully.",
+          message: " Tutorial was updated succesfully.",
         });
       } else {
         res.send({
@@ -91,3 +92,33 @@ exports.delete = (req, res) => {
       });
     });
 };
+
+
+exports.auth = async function (req, res, next) {
+  const{username, password, id} = req.body;
+  UserCont.findAll({
+    where: {
+      username: username,
+      password: password
+    }
+  })
+  .then((data) => {
+    if(data[0].username === username && data[0].password === password){
+      const token = jwt.sign({
+        id : data[0].id,
+        title: username,
+        role: 'user'
+      },
+      process.env.TOKEN_SECRET_KEY,
+      {
+        algorithm:"HS256",
+        expiresIn:process.env.TOKEN_ADMIN_EXPIRESIN,
+      }
+      );
+      return res.status(200).json({ token });
+    }
+  })
+  .catch((err) => {
+    console.log("Errorni yomoni: " + err);
+  });
+}
