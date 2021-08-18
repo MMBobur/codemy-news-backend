@@ -8,7 +8,7 @@ module.exports = (sequelize, Sequelize) => {
           allowNull: false,
           primaryKey: true,
         },
-        car_id: {
+        category_id: {
           type: Sequelize.INTEGER,
           allowNull: false,
         },
@@ -25,7 +25,7 @@ module.exports = (sequelize, Sequelize) => {
           allowNull: false,
         },
         data: {
-          type: Sequelize.BLOB("long"),
+          type: Sequelize.DATEONLY,
           allowNull: false,
         },
         image: {
