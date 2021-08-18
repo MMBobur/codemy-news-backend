@@ -7,7 +7,7 @@ module.exports = {
             if(username === process.env.ADMIN_USERNAME && password === process.env.ADMIN_PASSWORD){
                 const token =jwt.sign({
                     id : null,
-                    title:username,
+                    title: username,
                     role: 'admin'
                 },
                 process.env.TOKEN_SECRET_KEY,
@@ -20,7 +20,7 @@ module.exports = {
             }
             throw new Error();
         }catch(e){
-            return next(new ErrorHandler(401, "Authentication failed"));
+            return next();
         }
     },
 };

@@ -9,7 +9,7 @@ exports.findAll = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving Users.",
+        message: err.message || "Some error occurred while retrieving News.",
       });
     });
 };
@@ -18,12 +18,12 @@ exports.create = (req, res) => {
 
   const userw = {
 
-    car_id: req.body.car_id,
+    category_id: req.body.category_id,
     title: req.body.title,
     text: req.body.text,
     author: req.body.author,
     data: req.body.data,
-    image: req.protocol + "://" + req.get("host") + "/image/" + req.file.filename,
+    image: req.protocol + "://" + req.get("host") + "/img/" + req.file.filename,
   };
 
   
@@ -35,7 +35,7 @@ exports.create = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while creating the Users.",
+        message: err.message || "Some error occurred while creating the News.",
       });
     });
 };
@@ -50,7 +50,7 @@ exports.findOne = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Users with id=" + id,
+        message: "Error retrieving News with id=" + id,
       });
     });
 };
@@ -61,12 +61,12 @@ exports.update = (req, res) => {
     return res.json({ error: "katta error" });
   }
   const userw = {
-    car_id: req.body.car_id,
+    category_id: req.body.category_id,
     title: req.body.title,
     text: req.body.text,
     author: req.body.author,
     data: req.body.data,
-    image: req.protocol + "://" + req.get("host") + "/image/" + req.file.filename,
+    image: req.protocol + "://" + req.get("host") + "/img/" + req.file.filename,
   };
 
   const id = req.params.id;
@@ -76,17 +76,17 @@ exports.update = (req, res) => {
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Users was updated successfully.",
+          message: "News was updated successfully.",
         });
       } else {
         res.send({
-          message: `Cannot update Users with id=${id}. Maybe Staff was not found or req.body is empty!`,
+          message: `Cannot update News with id=${id}. Maybe Staff was not found or req.body is empty!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating User with id=" + id,
+        message: "Error updating News with id=" + id,
       });
     });
 };
@@ -101,17 +101,18 @@ exports.delete = (req, res) => {
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Users was deleted successfully!",
+          message: "News was deleted successfully!",
         });
       } else {
         res.send({
-          message: `Cannot delete Users with id=${id}. Maybe Staff was not found!`,
+          message: `Cannot delete News with id=${id}. Maybe Staff was not found!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Users with id=" + id,
+        message: "Could not delete News with id=" + id,
       });
     });
 };
+
