@@ -9,8 +9,10 @@ const authenticate = require("../util/authenticate");
 const permit = require("../util/permission");
 
 
+router.get('/group', newsCont.group)
 router.get('/', newsCont.findAll);
 router.get('/:id', newsCont.findOne);
+
 
 router.use(authenticate);
 router.use(permit("admin","user"));

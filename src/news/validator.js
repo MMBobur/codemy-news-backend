@@ -8,7 +8,6 @@ module.exports = {
       text: Joi.string().required(),
       author: Joi.string().required(),
       data: Joi.string().required(),
-      // image: Joi.string().required(),
     },
   },
 
@@ -22,7 +21,6 @@ module.exports = {
       text: Joi.string().required(),
       author: Joi.string().required(),
       data: Joi.string().required(),
-      // image: Joi.string().required(),
     },
   },
 

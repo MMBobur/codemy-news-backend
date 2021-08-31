@@ -2,8 +2,7 @@ const db = require("../model/index");
 const News = db.News;
 
 exports.findAll = (req, res) => {
-  News
-    .findAll()
+  News.findAll()
     .then((data) => {
       res.send(data);
     })
@@ -15,9 +14,7 @@ exports.findAll = (req, res) => {
 };
 
 exports.create = (req, res) => {
-
   const userw = {
-
     category_id: req.body.category_id,
     title: req.body.title,
     text: req.body.text,
@@ -26,10 +23,7 @@ exports.create = (req, res) => {
     image: req.protocol + "://" + req.get("host") + "/img/" + req.file.filename,
   };
 
-  
-
-  News
-    .create(userw)
+  News.create(userw)
     .then((data) => {
       res.send(data);
     })
@@ -43,8 +37,7 @@ exports.create = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  News
-    .findByPk(id)
+  News.findByPk(id)
     .then((data) => {
       res.send(data);
     })
@@ -71,8 +64,8 @@ exports.update = (req, res) => {
 
   const id = req.params.id;
   News.update(userw, {
-      where: { id: id },
-    })
+    where: { id: id },
+  })
     .then((num) => {
       if (num == 1) {
         res.send({
@@ -94,10 +87,9 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  News
-    .destroy({
-      where: { id: id },
-    })
+  News.destroy({
+    where: { id: id },
+  })
     .then((num) => {
       if (num == 1) {
         res.send({
@@ -116,3 +108,8 @@ exports.delete = (req, res) => {
     });
 };
 
+exports.group = (req, res) => {
+  News.sequelize.query("SELECT category_id, (select name from news_website.category where id=news_website.news.category_id) as category_title,(select color from news_website.category where id=news_website.news.category_id) as color, count(title) as count  FROM news_website.news group by category_id").then((data) => {
+    res.status(200).json(data[0])
+  })
+};
